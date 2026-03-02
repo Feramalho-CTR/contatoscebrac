@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Separador de Contatos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>Separador de Contatos</h1>
+        <p>
+          Envie seu contato de forma rápida e continue para avaliar a escola no Google.
+        </p>
+      </header>
+
+      <section class="card">
+        <h2>1) Enviar contato</h2>
+        <p class="hint">
+          No celular, toque em <strong>Selecionar contato do celular</strong>. Se o navegador não
+          suportar, use o arquivo <strong>.vcf</strong>.
+        </p>
+
+        <div class="actions">
+          <button id="pickContactBtn">Selecionar contato do celular</button>
+        </div>
+
+        <label for="vcfFile">Ou envie arquivo de contatos (.vcf)</label>
+        <input id="vcfFile" type="file" accept=".vcf,text/vcard" />
+
+        <p id="status" class="status">Nenhum contato carregado.</p>
+
+        <div class="actions">
+          <button id="downloadCsv" disabled>Baixar CSV (Excel)</button>
+          <button id="copyTsv" disabled>Copiar para Google Planilhas</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Enviar direto para Google Planilhas (opcional)</h2>
+        <label for="webhookUrl">URL do Web App (Apps Script)</label>
+        <input
+          id="webhookUrl"
+          type="url"
+          placeholder="https://script.google.com/macros/s/.../exec"
+        />
+        <button id="sendToSheets" disabled>Enviar contato agora</button>
+        <p id="sendSuccess" class="success hidden">✅ Contato enviado com sucesso.</p>
+      </section>
+
+      <section class="card">
+        <h2>2) Avalie a escola no Google</h2>
+        <label for="googleReviewUrl">Link da avaliação no Google</label>
+        <input
+          id="googleReviewUrl"
+          type="url"
+          placeholder="https://g.page/r/.../review"
+        />
+
+        <label>Avaliação (estrelas)</label>
+        <div id="stars" class="stars" role="radiogroup" aria-label="Avaliação em estrelas">
+          <button type="button" class="star" data-value="1" aria-label="1 estrela">★</button>
+          <button type="button" class="star" data-value="2" aria-label="2 estrelas">★</button>
+          <button type="button" class="star" data-value="3" aria-label="3 estrelas">★</button>
+          <button type="button" class="star" data-value="4" aria-label="4 estrelas">★</button>
+          <button type="button" class="star" data-value="5" aria-label="5 estrelas">★</button>
+        </div>
+
+        <label for="reviewComment">Comentário</label>
+        <textarea
+          id="reviewComment"
+          rows="4"
+          placeholder="Conte rapidamente como foi sua experiência."
+        ></textarea>
+
+        <div class="actions">
+          <button id="copyReviewBtn">Copiar avaliação</button>
+          <button id="openGoogleReviewBtn">Abrir Google para publicar</button>
+        </div>
+        <p id="reviewStatus" class="status"></p>
+      </section>
+
+      <section class="card">
+        <h2>Contatos encontrados</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+              </tr>
+            </thead>
+            <tbody id="contactsTableBody">
+              <tr>
+                <td colspan="2" class="empty">Carregue um contato para começar.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

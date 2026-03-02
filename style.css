@@ -1,0 +1,163 @@
+:root {
+  --blue: #0b5fff;
+  --yellow: #ffcd00;
+  --green: #13a538;
+  --bg: #f4f8ff;
+  --text: #17314f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #eaf2ff, #fffbe8);
+  color: var(--text);
+}
+
+.app {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  background: linear-gradient(130deg, var(--blue), var(--green));
+  color: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(17, 46, 102, 0.18);
+}
+
+.card {
+  background: white;
+  border: 2px solid #d8e4ff;
+  border-left: 8px solid var(--yellow);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type='file'],
+input[type='url'],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b7c8ec;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font: inherit;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover:enabled {
+  background: #084ccf;
+}
+
+button:disabled {
+  background: #a8bbdf;
+  cursor: not-allowed;
+}
+
+#sendToSheets,
+#openGoogleReviewBtn {
+  background: var(--green);
+}
+
+#sendToSheets:hover:enabled,
+#openGoogleReviewBtn:hover:enabled {
+  background: #0d7f2a;
+}
+
+.status {
+  color: #203a62;
+  font-weight: bold;
+}
+
+.success {
+  color: #0d7f2a;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.hint {
+  margin-top: 8px;
+  color: #456;
+}
+
+.stars {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.star {
+  background: #e0e8fa;
+  color: #6f7e9e;
+  font-size: 24px;
+  line-height: 1;
+  padding: 8px 10px;
+}
+
+.star.active {
+  background: var(--yellow);
+  color: #5a4200;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: var(--yellow);
+  color: #26313f;
+}
+
+th,
+td {
+  border: 1px solid #d7e2fa;
+  padding: 10px;
+  text-align: left;
+}
+
+.empty {
+  text-align: center;
+  color: #5a6d91;
+}
