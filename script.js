@@ -182,6 +182,11 @@ sendToSheetsBtn.addEventListener('click', async () => {
     return;
   }
 
+  if (webhookUrl.includes('docs.google.com')) {
+    statusText.textContent = '⚠️ URL Inválida: Você colou o link da planilha, mas precisa ser a URL do Web App (Apps Script).';
+    return;
+  }
+
   sendToSheetsBtn.disabled = true;
   statusText.textContent = 'Enviando indicações...';
 
