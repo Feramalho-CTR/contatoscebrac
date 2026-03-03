@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --blue: #0061ff;
-  --blue-hover: #0056e0;
-  --yellow: #ffcc00;
-  --green: #00ab41;
-  --green-hover: #009137;
+  --blue: #003b91;
+  --blue-hover: #002d6e;
+  --yellow: #fdd000;
+  --green: #40a829;
+  --green-hover: #348a21;
   --bg: #f8fbff;
   --text: #0f172a;
   --text-muted: #64748b;
@@ -40,37 +40,86 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, var(--blue), #004ecc);
+  background: linear-gradient(135deg, var(--blue), #002d6e);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: white;
-  padding: 32px;
+  padding: 48px 32px;
   border-radius: var(--radius);
   margin-bottom: 32px;
   box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 8px solid var(--yellow);
+  border-bottom: 8px solid var(--green);
 }
 
-header::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -10%;
-  width: 300px;
-  height: 300px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 50%;
+@keyframes logoEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotate(-10deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.header-logo {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  animation: logoEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 header h1 {
   margin: 0 0 8px 0;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  font-size: 2.25rem;
+  letter-spacing: -0.04em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 header p {
   margin: 0;
-  opacity: 0.9;
-  font-size: 1.1rem;
+  opacity: 0.95;
+  font-size: 1.2rem;
+  max-width: 600px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 20px;
+    gap: 20px;
+  }
+
+  .header-logo {
+    width: 90px;
+  }
+
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  header p {
+    font-size: 1.1rem;
+  }
 }
 
 .card {
