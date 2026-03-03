@@ -32,7 +32,7 @@ let selectedRating = 0;
 let currentProfessorSession = null;
 
 const CONFIGURED_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxG-BiEH8B3wvV5v2f93kHIPvxeeZd4A7NrWv4c5eNipp_nGDzAw06-xR6ipLZi2FJHxw/exec';
-const CONFIGURED_REVIEW_URL = 'https://www.google.com/search?q=cebrac+joinville&ludocid=13719213190831601754#lrd=0x94deb049a1245031:0xbe64b5338f17f85a,3';
+const CONFIGURED_REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJMVAkoUmw3pQRWvgXjzO1ZL4';
 
 // Carregar URLs salvas
 window.addEventListener('DOMContentLoaded', () => {
