@@ -31,14 +31,17 @@ let contacts = [];
 let selectedRating = 0;
 let currentProfessorSession = null;
 
-const DEFAULT_REVIEW_URL = 'https://www.google.com/search?q=cebrac+joinville&ludocid=13719213190831601754#lrd=0x94deb049a1245031:0xbe64b5338f17f85a,3';
+const CONFIGURED_WEBHOOK_URL = ''; // Cole aqui a URL /exec do seu Apps Script
+const CONFIGURED_REVIEW_URL = 'https://www.google.com/search?q=cebrac+joinville&ludocid=13719213190831601754#lrd=0x94deb049a1245031:0xbe64b5338f17f85a,3';
 
 // Carregar URLs salvas
 window.addEventListener('DOMContentLoaded', () => {
   const savedWebhook = localStorage.getItem('webhookUrl');
-  const savedReview = localStorage.getItem('googleReviewUrl') || DEFAULT_REVIEW_URL;
-  if (savedWebhook) webhookUrlInput.value = savedWebhook;
-  if (savedReview) googleReviewUrlInput.value = savedReview;
+  const savedReview = localStorage.getItem('googleReviewUrl');
+
+  // Prioridade: 1. Hardcoded, 2. LocalStorage, 3. Default
+  webhookUrlInput.value = CONFIGURED_WEBHOOK_URL || savedWebhook || '';
+  googleReviewUrlInput.value = CONFIGURED_REVIEW_URL || savedReview || '';
 });
 
 // Admin Modal Toggle
