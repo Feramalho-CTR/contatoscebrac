@@ -180,28 +180,29 @@ sendToSheetsBtn.addEventListener('click', async () => {
     return;
   }
 
-  if (!webhookUrl) {
-    statusText.textContent = '⚠️ Modo Admin: Configure a URL no painel do professor.';
-    return;
-  }
-
-  if (webhookUrl.includes('docs.google.com')) {
-    statusText.textContent = '⚠️ URL Inválida: Você colou o link da planilha, mas precisa ser a URL do Web App (Apps Script).';
+  if (contacts.length === 0) {
+    statusText.textContent = '⚠️ Selecione pelo menos um amigo para enviar.';
     return;
   }
 
   sendToSheetsBtn.disabled = true;
-  statusText.textContent = 'Enviando indicações...';
+  statusText.textContent = 'Enviando indicações para a planilha...';
 
   try {
+    // Formata os contatos para garantir que temos apenas Nome e Telefone limpos
+    const contactsPayload = contacts.map(c => ({
+      name: c.name,
+      phone: c.phone
+    }));
+
     await fetch(webhookUrl, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' }, // text/plain ajuda a evitar problemas de CORS no Apps Script
       body: JSON.stringify({
         studentName: student,
         professor: professor,
-        contacts: contacts, // Os contatos serão mapeados como B e C no Script
+        contacts: contactsPayload,
         timestamp: new Date().toISOString()
       })
     });
@@ -214,8 +215,14 @@ sendToSheetsBtn.addEventListener('click', async () => {
     sendSuccess.classList.remove('hidden');
     statusText.textContent = '✅ Sucesso! Agora você pode avaliar o curso abaixo.';
     statusText.classList.add('success');
+
+    // Limpar contatos após sucesso para evitar re-envio acidental
+    contacts = [];
+    onContactsUpdated();
+
   } catch (error) {
-    statusText.textContent = `Erro ao enviar: ${error.message}`;
+    statusText.textContent = `❌ Erro na conexão: ${error.message}. Verifique se a URL do Web App está correta no painel.`;
+    console.error('Erro no envio:', error);
   } finally {
     sendToSheetsBtn.disabled = false;
   }
