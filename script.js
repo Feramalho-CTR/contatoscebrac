@@ -156,7 +156,7 @@ downloadCsvBtn.addEventListener('click', () => {
 copyTsvBtn.addEventListener('click', async () => {
   const professor = getSelectedProfessor();
   const student = studentNameInput.value.trim() || 'Desconhecido';
-  const tsv = ['Nome\tTelefone\tProfessor\tAluno', ...contacts.map((c) => `${c.name}\t${c.phone}\t${professor}\t${student}`)].join('\n');
+  const tsv = ['Aluno\tIndicação\tNúmero\tProfessor', ...contacts.map((c) => `${student}\t${c.name}\t${c.phone}\t${professor}`)].join('\n');
   try {
     await navigator.clipboard.writeText(tsv);
     statusText.textContent = '✅ Copiado para Planilhas!';
@@ -189,9 +189,9 @@ sendToSheetsBtn.addEventListener('click', async () => {
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        professor: professor,
         studentName: student,
-        contacts: contacts,
+        professor: professor,
+        contacts: contacts, // Os contatos serão mapeados como B e C no Script
         timestamp: new Date().toISOString()
       })
     });
@@ -336,8 +336,8 @@ function escapeHtml(value) {
 function toCsv(data) {
   const professor = getSelectedProfessor();
   const student = studentNameInput.value.trim() || 'Desconhecido';
-  const header = ['Nome', 'Telefone', 'Professor', 'Aluno'];
-  const rows = data.map((contact) => [contact.name, contact.phone, professor, student]);
+  const header = ['Aluno', 'Indicação', 'Número', 'Professor'];
+  const rows = data.map((contact) => [student, contact.name, contact.phone, professor]);
 
   return [header, ...rows]
     .map((row) => row.map(csvEscape).join(','))
