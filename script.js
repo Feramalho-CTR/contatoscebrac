@@ -168,6 +168,8 @@ copyTsvBtn.addEventListener('click', async () => {
 
 sendToSheetsBtn.addEventListener('click', async () => {
   const student = studentNameInput.value.trim();
+  const professor = getSelectedProfessor();
+  const webhookUrl = webhookUrlInput.value.trim();
 
   if (!student) {
     statusText.textContent = '⚠️ Por favor, digite seu nome primeiro.';
