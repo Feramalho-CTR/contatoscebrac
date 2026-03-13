@@ -186,7 +186,7 @@ sendToSheetsBtn.addEventListener('click', async () => {
   }
 
   sendToSheetsBtn.disabled = true;
-  statusText.textContent = 'Enviando indicações para a planilha...';
+  statusText.textContent = 'Enviando indicações...';
 
   try {
     // Formata os contatos para garantir que temos apenas Nome e Telefone limpos
@@ -218,7 +218,7 @@ sendToSheetsBtn.addEventListener('click', async () => {
 
     // Limpar contatos após sucesso para evitar re-envio acidental
     contacts = [];
-    onContactsUpdated();
+    onContactsUpdated(true);
 
   } catch (error) {
     statusText.textContent = `❌ Erro na conexão: ${error.message}. Verifique se a URL do Web App está correta no painel.`;
@@ -255,15 +255,18 @@ function getSelectedProfessor() {
   return checked ? checked.value : 'Não especificado';
 }
 
-function onContactsUpdated() {
+function onContactsUpdated(isSuccess = false) {
   renderTable(contacts);
-  sendSuccess.classList.add('hidden');
+
+  if (!isSuccess) {
+    sendSuccess.classList.add('hidden');
+  }
 
   if (contacts.length > 0) {
     statusText.textContent = `${contacts.length} amigo(s) selecionado(s).`;
     statusText.classList.remove('success');
     sendToSheetsBtn.disabled = false;
-  } else {
+  } else if (!isSuccess) {
     statusText.textContent = 'Nenhum amigo selecionado.';
     sendToSheetsBtn.disabled = true;
   }
