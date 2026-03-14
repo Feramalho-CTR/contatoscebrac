@@ -321,9 +321,9 @@ function parseVcf(vcfText) {
 }
 
 function normalizePhone(value) {
-  let cleaned = value.replace(/[^\d+]/g, '').trim();
-  if (cleaned.length === 11 && !cleaned.startsWith('+')) {
-    cleaned = '+55' + cleaned;
+  let cleaned = value.replace(/[^\d]/g, '').trim();
+  if (cleaned.length === 11) {
+    cleaned = '55' + cleaned;
   }
   return cleaned;
 }
