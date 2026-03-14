@@ -31,7 +31,7 @@ let contacts = [];
 let selectedRating = 0;
 let currentProfessorSession = null;
 
-const CONFIGURED_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxG-BiEH8B3wvV5v2f93kHIPvxeeZd4A7NrWv4c5eNipp_nGDzAw06-xR6ipLZi2FJHxw/exec';
+const CONFIGURED_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyLvqRny1V5IVMj-zd7777GJkkeSnVrjHlVZzzP5JjdBEszu_-yla-9xk7jm1SCInPFrQ/exec';
 const CONFIGURED_REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJMVAkoUmw3pQRWvgXjzO1ZL4';
 
 // Carregar URLs salvas
