@@ -233,6 +233,16 @@ button:disabled {
   background: var(--green-hover);
 }
 
+.btn-whatsapp {
+  background: #25D366 !important;
+  color: white !important;
+}
+
+.btn-whatsapp:hover {
+  background: #128C7E !important;
+  transform: translateY(-1px);
+}
+
 .status {
   margin-top: 16px;
   padding: 12px;

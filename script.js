@@ -26,6 +26,7 @@ const googleReviewUrlInput = document.getElementById('googleReviewUrl');
 const downloadCsvBtn = document.getElementById('downloadCsv');
 const copyTsvBtn = document.getElementById('copyTsv');
 const studentNameInput = document.getElementById('studentName');
+const whatsappBtn = document.getElementById('whatsappBtn');
 
 let contacts = [];
 let selectedRating = 0;
@@ -33,6 +34,7 @@ let currentProfessorSession = null;
 
 const CONFIGURED_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwNp2Nklg6z7-mdTGIQk_O_c6gT_MdsxP1kg16jM4RW3k9fSv7IdX8j-hGKISopzS21RA/exec';
 const CONFIGURED_REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJMVAkoUmw3pQRWvgXjzO1ZL4';
+const WHATSAPP_NUMBER = '5547992565106';
 
 // Carregar URLs salvas
 window.addEventListener('DOMContentLoaded', () => {
@@ -248,6 +250,22 @@ openGoogleReviewBtn.addEventListener('click', () => {
     window.open(url, '_blank', 'noopener,noreferrer');
     reviewStatus.textContent = 'Abrindo Google...';
   });
+});
+
+whatsappBtn.addEventListener('click', () => {
+  const student = studentNameInput.value.trim();
+  const professor = getSelectedProfessor();
+
+  if (!student) {
+    statusText.textContent = '⚠️ Por favor, digite seu nome primeiro.';
+    studentNameInput.focus();
+    return;
+  }
+
+  const message = `Ola, Eu sou ${student}, sou aluno do ${professor}, quero fazer minhas indicaçoes`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  
+  window.open(url, '_blank');
 });
 
 function getSelectedProfessor() {
